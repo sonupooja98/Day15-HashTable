@@ -4,9 +4,10 @@ package com.bridglab.day15;
 public class HashTableImplementation<K, V> {
 	Node head;
 	Node tail;
+	private Node currentNode;
 
 	public void add(K key, V value) {
-		Node<K, V> myNode = searchNode(key);
+		Node<K, V> myNode = (Node<K, V>) searchNode(key);
 		if (myNode == null) {
 			myNode = new Node<K, V>(key, value);
 			this.append(myNode);
@@ -16,7 +17,7 @@ public class HashTableImplementation<K, V> {
 	}
 
 	// Append the value in the linked list
-	public void append(Node<K, V> myNode) {
+	public void append(Node myNode) {
 		if (this.head == null)
 			this.head = myNode;
 		if (this.tail == null)
@@ -29,7 +30,7 @@ public class HashTableImplementation<K, V> {
 
 	// Searching for the word in the linked list
 	public Node<K, V> searchNode(K data) {
-		Node<K, V> currentNode = head;
+		currentNode = head;
 		int position = 0;
 		while (currentNode != null) {
 			position++;
